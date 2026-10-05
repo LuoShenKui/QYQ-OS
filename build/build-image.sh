@@ -78,6 +78,16 @@ SUPPORT_URL="https://github.com/LuoShenKui/QYQ-OS/issues"
 BUG_REPORT_URL="https://github.com/LuoShenKui/QYQ-OS/issues"
 EOF
 
+# Console/login banner should identify the distribution as QYQ OS.
+cat > "$MOUNT_DIR/etc/issue" <<'EOF'
+QYQ OS 0.0.1 \n \l
+
+EOF
+
+cat > "$MOUNT_DIR/etc/issue.net" <<'EOF'
+QYQ OS 0.0.1
+EOF
+
 echo "$HOSTNAME" > "$MOUNT_DIR/etc/hostname"
 
 cat > "$MOUNT_DIR/etc/hosts" <<EOF
@@ -129,6 +139,9 @@ apt-get install -y systemd-resolved
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 systemctl enable ssh
+
+# 0.0.1 has no desktop environment. Boot directly to the text multi-user target.
+systemctl set-default multi-user.target
 
 # Create a non-root development user.
 # The 0.0.1 image is a development artifact, not a production installer.
