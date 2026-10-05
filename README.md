@@ -117,6 +117,8 @@ QYQ OS reuses mature Linux infrastructure wherever possible and focuses developm
 
 ## 0.0.1 — Bootable QYQ OS
 
+Version baseline: [docs/0.0.1-BASELINE.md](./docs/0.0.1-BASELINE.md)
+
 The first goal is simple:
 
 > **Make QYQ OS boot and run.**
