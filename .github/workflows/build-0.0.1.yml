@@ -33,9 +33,13 @@ jobs:
           chmod +x build/build-image.sh build/test-qemu.sh
           sudo ./build/build-image.sh
 
+      - name: Hand image ownership back to runner
+        run: |
+          sudo chown -R "$USER:$USER" out
+
       - name: Boot-test QYQ OS in QEMU
         run: |
-          sudo ./build/test-qemu.sh
+          ./build/test-qemu.sh
 
       - name: Compress image
         if: success()
