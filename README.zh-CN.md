@@ -117,6 +117,8 @@ QYQ OS 优先复用成熟 Linux 基础设施，把主要开发工作集中在新
 
 ## 0.0.1 — 跑起来 QYQ OS
 
+版本基线：[docs/0.0.1-BASELINE.md](./docs/0.0.1-BASELINE.md)
+
 第一步很简单：
 
 > **先让 QYQ OS 真正启动并运行。**
