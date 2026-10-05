@@ -62,7 +62,7 @@ mount "$ROOT_DEV" "$MOUNT_DIR"
 mkdir -p "$MOUNT_DIR/boot/efi"
 mount "$ESP_DEV" "$MOUNT_DIR/boot/efi"
 
-debootstrap   --arch="$DEBIAN_ARCH"   --include=systemd-sysv,linux-image-amd64,grub-efi-amd64,grub-efi-amd64-bin,openssh-server,ca-certificates,curl,iproute2,iputils-ping,isc-dhcp-client,sudo   "$DEBIAN_SUITE"   "$MOUNT_DIR"   "$DEBIAN_MIRROR"
+debootstrap   --arch="$DEBIAN_ARCH"   --include=systemd-sysv,systemd-resolved,linux-image-amd64,grub-efi-amd64,grub-efi-amd64-bin,openssh-server,ca-certificates,curl,iproute2,iputils-ping,isc-dhcp-client,sudo   "$DEBIAN_SUITE"   "$MOUNT_DIR"   "$DEBIAN_MIRROR"
 
 echo "[5/9] Configuring QYQ OS identity and base system..."
 cat > "$MOUNT_DIR/etc/os-release" <<EOF
