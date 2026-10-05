@@ -190,3 +190,9 @@ AUTONOMOUS DOWNLOAD & INSTALLATION
 ↓
 AGENT-NATIVE SYSTEM SERVICES
 ```
+
+## License
+
+Original QYQ OS code is licensed under **GPL-3.0-or-later**.
+
+Third-party components retain their own licenses and copyright notices. See [LICENSES.md](./LICENSES.md) for details.
