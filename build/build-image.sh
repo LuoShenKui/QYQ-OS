@@ -88,6 +88,13 @@ cat > "$MOUNT_DIR/etc/issue.net" <<'EOF'
 QYQ OS 0.0.1
 EOF
 
+cat > "$MOUNT_DIR/etc/motd" <<'EOF'
+QYQ OS 0.0.1
+QiYinQiao Operating System
+
+Based on Debian GNU/Linux 13 (Trixie)
+EOF
+
 echo "$HOSTNAME" > "$MOUNT_DIR/etc/hostname"
 
 cat > "$MOUNT_DIR/etc/hosts" <<EOF
