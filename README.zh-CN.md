@@ -192,3 +192,9 @@ AUTONOMOUS DOWNLOAD & INSTALLATION
 ↓
 AGENT-NATIVE SYSTEM SERVICES
 ```
+
+## 许可证
+
+QYQ OS 自有代码采用 **GPL-3.0-or-later** 许可证。
+
+第三方组件继续遵守其各自原有许可证和版权声明。详细说明见 [LICENSES.md](./LICENSES.md)。
