@@ -1,68 +1,16 @@
-name: Build QYQ OS 0.0.1
+name: Build QYQ OS 0.0.1 (archived)
 
+# 0.0.1 is frozen. Keep this workflow only for manual historical rebuilds.
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - "VERSION"
-      - "config/**"
-      - "build/**"
-      - ".github/workflows/build-0.0.1.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  build-and-boot-test:
+  historical-note:
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install build dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y             debootstrap             parted             dosfstools             e2fsprogs             qemu-system-x86             ovmf
-
-      - name: Build QYQ OS image
-        run: |
-          chmod +x build/build-image.sh build/test-qemu.sh
-          sudo ./build/build-image.sh
-
-      - name: Hand image ownership back to runner
-        run: |
-          sudo chown -R "$USER:$USER" out
-
-      - name: Boot-test QYQ OS in QEMU
-        run: |
-          ./build/test-qemu.sh
-
-      - name: Compress image
-        if: success()
-        run: |
-          xz -T0 -9 out/qyq-os-0.0.1-amd64.raw
-          sha256sum out/qyq-os-0.0.1-amd64.raw.xz > out/SHA256SUMS
-
-      - name: Upload QYQ OS image
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: qyq-os-0.0.1-amd64
-          path: |
-            out/qyq-os-0.0.1-amd64.raw.xz
-            out/SHA256SUMS
-            out/qemu-boot.log
-          retention-days: 14
-
-      - name: Upload boot log on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: qyq-os-0.0.1-failed-boot-log
-          path: out/qemu-boot.log
-          if-no-files-found: ignore
-          retention-days: 7
+      - run: |
+          echo "QYQ OS 0.0.1 is frozen at tag v0.0.1."
+          echo "Use the tagged source to reproduce the original 0.0.1 build."
