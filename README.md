@@ -137,7 +137,22 @@ The first goal is simple:
 
 The purpose of 0.0.1 is to establish a reproducible, bootable base system that can be developed further.
 
-## Next — Autonomous Download & Installation
+## 0.0.2 — KDE Plasma / Wayland Desktop
+
+Design baseline: [docs/0.0.2-DESKTOP-BASELINE.md](./docs/0.0.2-DESKTOP-BASELINE.md)
+
+0.0.2 establishes the first graphical QYQ OS desktop:
+
+- KDE Plasma
+- Wayland
+- SDDM graphical login
+- NetworkManager
+- QYQ OS textual branding
+- Chinese font support
+
+The QYQ visual logo is intentionally left unspecified for now.
+
+## Later — Autonomous Download & Installation
 
 After 0.0.1 works, the first Agent-native system capability will be:
 
@@ -185,6 +200,8 @@ Current focus:
 VISION
 ↓
 BOOTABLE 0.0.1
+↓
+KDE / WAYLAND DESKTOP 0.0.2
 ↓
 AUTONOMOUS DOWNLOAD & INSTALLATION
 ↓
