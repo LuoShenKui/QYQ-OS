@@ -139,6 +139,7 @@ The purpose of 0.0.1 is to establish a reproducible, bootable base system that c
 
 ## 0.0.2 — KDE Plasma / Wayland Desktop
 
+Release baseline: [docs/0.0.2-BASELINE.md](./docs/0.0.2-BASELINE.md)  
 Design baseline: [docs/0.0.2-DESKTOP-BASELINE.md](./docs/0.0.2-DESKTOP-BASELINE.md)
 
 0.0.2 establishes the first graphical QYQ OS desktop:
