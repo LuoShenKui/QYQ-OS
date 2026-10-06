@@ -99,7 +99,7 @@ EOF
 echo "$HOSTNAME" > "$MOUNT_DIR/etc/hostname"
 
 cat > "$MOUNT_DIR/etc/hosts" <<EOF
-127.0.0.2 localhost
+127.0.0.1 localhost
 127.0.1.1 $HOSTNAME
 ::1       localhost ip6-localhost ip6-loopback
 EOF
