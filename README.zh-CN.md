@@ -139,6 +139,7 @@ QYQ OS 优先复用成熟 Linux 基础设施，把主要开发工作集中在新
 
 ## 0.0.2 — KDE Plasma / Wayland 桌面
 
+版本基线：[docs/0.0.2-BASELINE.md](./docs/0.0.2-BASELINE.md)  
 设计基线：[docs/0.0.2-DESKTOP-BASELINE.md](./docs/0.0.2-DESKTOP-BASELINE.md)
 
 0.0.2 建立 QYQ OS 的第一版图形桌面：
