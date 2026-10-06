@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build a bootable QYQ OS 0.0.1 raw disk image.
+# Build a bootable QYQ OS 0.0.2 raw disk image.
 #
 # This script intentionally uses standard Debian tooling:
 # - debootstrap creates the Debian userspace.
@@ -66,10 +66,10 @@ debootstrap   --arch="$DEBIAN_ARCH"   --include=systemd-sysv,linux-image-amd64,g
 
 echo "[5/9] Configuring QYQ OS identity and base system..."
 cat > "$MOUNT_DIR/etc/os-release" <<EOF
-PRETTY_NAME="QYQ OS 0.0.1"
+PRETTY_NAME="QYQ OS 0.0.2"
 NAME="QYQ OS"
-VERSION_ID="0.0.1"
-VERSION="0.0.1"
+VERSION_ID="0.0.2"
+VERSION="0.0.2"
 VERSION_CODENAME="trixie"
 ID=qyq
 ID_LIKE=debian
@@ -80,17 +80,18 @@ EOF
 
 # Console/login banner should identify the distribution as QYQ OS.
 cat > "$MOUNT_DIR/etc/issue" <<'EOF'
-QYQ OS 0.0.1 \n \l
+QYQ OS 0.0.2 \n \l
 
 EOF
 
 cat > "$MOUNT_DIR/etc/issue.net" <<'EOF'
-QYQ OS 0.0.1
+QYQ OS 0.0.2
 EOF
 
 cat > "$MOUNT_DIR/etc/motd" <<'EOF'
-QYQ OS 0.0.1
+QYQ OS 0.0.2
 QiYinQiao Operating System
+七音桥 操作系统
 
 Based on Debian GNU/Linux 13 (Trixie)
 EOF
@@ -98,12 +99,12 @@ EOF
 echo "$HOSTNAME" > "$MOUNT_DIR/etc/hostname"
 
 cat > "$MOUNT_DIR/etc/hosts" <<EOF
-127.0.0.1 localhost
+127.0.0.2 localhost
 127.0.1.1 $HOSTNAME
 ::1       localhost ip6-localhost ip6-loopback
 EOF
 
-# Keep Debian repositories as the 0.0.1 package source.
+# Keep Debian repositories as the 0.0.2 package source.
 cat > "$MOUNT_DIR/etc/apt/sources.list" <<EOF
 deb $DEBIAN_MIRROR $DEBIAN_SUITE main
 deb $DEBIAN_MIRROR $DEBIAN_SUITE-updates main
@@ -141,17 +142,30 @@ chroot "$MOUNT_DIR" /bin/bash -eux <<'CHROOT'
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get update
-apt-get install -y systemd-resolved
+apt-get install -y \
+  systemd-resolved \
+  kde-standard \
+  sddm \
+  plasma-workspace \
+  kwin-wayland \
+  network-manager \
+  fonts-noto-cjk \
+  spice-vdagent \
+  qemu-guest-agent
 
-systemctl enable systemd-networkd
+# Keep systemd-resolved for DNS, but use NetworkManager for desktop networking.
+systemctl disable systemd-networkd || true
 systemctl enable systemd-resolved
+systemctl enable NetworkManager
 systemctl enable ssh
+systemctl enable sddm
+systemctl enable qemu-guest-agent || true
 
-# 0.0.1 has no desktop environment. Boot directly to the text multi-user target.
-systemctl set-default multi-user.target
+# 0.0.2 boots to the graphical desktop login.
+systemctl set-default graphical.target
 
 # Create a non-root development user.
-# The 0.0.1 image is a development artifact, not a production installer.
+# The 0.0.2 image is a development artifact, not a production installer.
 useradd -m -s /bin/bash qyq
 usermod -aG sudo qyq
 echo 'qyq:qyq' | chpasswd
@@ -176,7 +190,7 @@ grub-install   --target=x86_64-efi   --efi-directory=/boot/efi   --bootloader-id
 # Store build identity.
 mkdir -p /usr/lib/qyq
 cat > /usr/lib/qyq/release <<'EOF'
-QYQ_VERSION=0.0.1
+QYQ_VERSION=0.0.2
 BASE=Debian 13 / trixie
 ARCH=amd64
 EOF
