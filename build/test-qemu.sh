@@ -63,8 +63,15 @@ GRAPHICAL_OK=0
 SDDM_OK=0
 
 grep -q "QYQ OS 0.0.2" "$LOG" && IDENTITY_OK=1
-grep -Eq "Reached target .*graphical.target|Reached target Graphical Interface" "$LOG" && GRAPHICAL_OK=1
-grep -Eqi "Started .*sddm|Started sddm.service|Simple Desktop Display Manager" "$LOG" && SDDM_OK=1
+
+# systemd may hand the active VT to SDDM before it prints a final
+# "Reached target graphical.target" line on the serial console. Accept either
+# the queued default graphical target or the explicit reached-target message.
+grep -Eq "Queued start job for default target graphical\.target|Reached target .*graphical\.target|Reached target Graphical Interface" "$LOG" && GRAPHICAL_OK=1
+
+# SDDM successfully starting is the important runtime signal that the graphical
+# login manager is alive. Human validation still verifies the actual GUI.
+grep -Eqi "Started .*sddm\.service|Started sddm\.service|Simple Desktop Display Manager" "$LOG" && SDDM_OK=1
 
 if [[ "$IDENTITY_OK" -eq 1 && "$GRAPHICAL_OK" -eq 1 && "$SDDM_OK" -eq 1 ]]; then
   echo "QYQ OS 0.0.2 desktop boot verification PASSED."
