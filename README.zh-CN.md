@@ -137,7 +137,24 @@ QYQ OS 优先复用成熟 Linux 基础设施，把主要开发工作集中在新
 
 0.0.1 的意义，是先建立一个可重复构建、可以启动、可以继续开发的 QYQ OS 基础系统。
 
-## 下一步 — 自主下载与安装
+## 0.0.2 — KDE Plasma / Wayland 桌面
+
+设计基线：[docs/0.0.2-DESKTOP-BASELINE.md](./docs/0.0.2-DESKTOP-BASELINE.md)
+
+0.0.2 建立 QYQ OS 的第一版图形桌面：
+
+- KDE Plasma
+- Wayland
+- SDDM 图形登录
+- NetworkManager
+- QYQ OS 文本品牌标识
+- 中文字体支持
+
+QYQ OS 的品牌 Logo 暂时留空。
+
+中文名称：**七音桥 操作系统**
+
+## 后续 — 自主下载与安装
 
 0.0.1 跑通后，第一项 Agent-native 系统能力是：
 
@@ -187,6 +204,8 @@ QYQ OS 目前处于早期设计和启动阶段。
 VISION
 ↓
 BOOTABLE 0.0.1
+↓
+KDE / WAYLAND DESKTOP 0.0.2
 ↓
 AUTONOMOUS DOWNLOAD & INSTALLATION
 ↓
